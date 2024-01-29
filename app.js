@@ -75,10 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         upTimerId = setInterval(function () {
             doodlerBottomSpace += 20;
             doodler.style.bottom = doodlerBottomSpace + 'px';
-            if (doodlerBottomSpace > startPoint + 200) {
-                fall();
-            }
-            if (doodlerBottomSpace + 85 >= 600) {
+            if (doodlerBottomSpace > startPoint + 200 || doodlerBottomSpace + 85 >= 600) {
                 fall();
             }
         }, 30);
@@ -106,11 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     jump();
                 }
             })
-        }, 30);
+        }, 20);
     }
 
     function gameOver() {
-        console.log('gameover');
         isGameOver = true;
         while (grid.firstChild) {
             grid.removeChild(grid.firstChild);
@@ -120,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(downTimerId);
         clearInterval(leftTimerId);
         clearInterval(rightTimerId);
-
     }
 
     function control(e) {
@@ -171,13 +166,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function start () {
-        if (!isGameOver) {
-            createPlatforms();
-            createDoodler();
-            setInterval(movePlatforms, 30);
-            jump();
-            document.addEventListener('keyup', control);
-        }
+        document.getElementById("playBtn").addEventListener("click", function() {
+            document.getElementById("home").style.display = "none";
+            if (!isGameOver) {
+                createPlatforms();
+                createDoodler();
+                setInterval(movePlatforms, 30);
+                jump();
+                document.addEventListener('keyup', control);
+            }
+        })
     }
 
     // attach to button
