@@ -78,12 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (doodlerBottomSpace > startPoint + 200) {
                 fall();
             }
-            // if (doodlerBottomSpace > platforms[-2].bottom) {
-            //     fall()
-            // }
-            // if (doodlerBottomSpace + 85 > platforms[-1].bottom) {
-            //     fall()
-            // }
+            if (doodlerBottomSpace + 85 >= 600) {
+                fall();
+            }
         }, 30);
     }
 
